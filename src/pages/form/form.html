@@ -1,0 +1,82 @@
+<!--
+  Generated template for the FormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Application Form</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="form" (ngSubmit)="saveForm(form.value)">
+    <h3 margin-left>Start your application</h3>
+    <p margin-left>You will be required to take a test which would determine if your license would be issued to you.</p>
+    <p margin>{{ displayError }}</p>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Firstname</ion-label>
+        <ion-input type="text" formControlName="firstname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Lastname</ion-label>
+        <ion-input type="text" formControlName="lastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Age</ion-label>
+        <ion-input type="text" formControlName="age"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Gender</ion-label>
+        <ion-select formControlName="gender">
+          <ion-option value="female">Female</ion-option>
+          <ion-option value="male">Male</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Facial Marks</ion-label>
+        <ion-select formControlName="facialmarks">
+          <ion-option value="false">No</ion-option>
+          <ion-option value="true">Yes</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>First Issue</ion-label>
+        <ion-select formControlName="firstissue">
+          <ion-option value="false">No</ion-option>
+          <ion-option value="true">Yes</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Street</ion-label>
+        <ion-textarea formControlName="street" placeholder="22 Wall street, Oshodi"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>City</ion-label>
+        <ion-input type="text" formControlName="city"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="(states | async); let states">
+        <ion-label stacked>State</ion-label>
+          <ion-select formControlName="state">
+            <ng-container *ngFor="let state of states">
+                <ion-option [value]="state.value">{{ state.label }}</ion-option>
+            </ng-container>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Country</ion-label>
+        <ion-select formControlName="country">
+          <ion-option value="Nigeria">Nigeria (NGN)</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button block [disabled]="(form && (!form.valid))">Next</button>
+    </div>
+  </form>
+</ion-content>

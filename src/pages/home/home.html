@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      E Licensing
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row wrap>
+        <ion-col class="category-icon" text-center (click)="gotoVerification()">
+          <i class="fi flaticon-clipboards-1"></i>
+          <h4>License Verification</h4>
+        </ion-col>
+        <ion-col class="category-icon" text-center (click)="gotoFee()">
+          <i class="fi flaticon-id-card"></i>
+          <h4>License Fee</h4>
+        </ion-col>
+        <ion-col class="category-icon" text-center (click)="gotoForm()">
+          <i class="fi flaticon-clipboards"></i>
+          <h4>Application Enquiry</h4>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

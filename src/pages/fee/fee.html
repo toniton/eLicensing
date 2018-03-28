@@ -1,0 +1,32 @@
+<!--
+  Generated template for the FeePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>License Fees</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list *ngIf="(fees | async); let fees; else loading">
+    <ion-item *ngFor="let fee of fees;">
+      <ion-avatar item-start>
+        <div class="label-sticker" [style.background-color]="getRandomColor()">{{ fee.code }}</div>
+      </ion-avatar>
+      <h2><strong>{{ fee.name }}</strong></h2>
+      <h3>Price • {{ fee.currency }}{{ fee.price }}</h3>
+      <p>{{ fee.description }}</p>
+    </ion-item>
+    <div *ngIf="fees.length === 0">No results for Fees</div>
+  </ion-list>
+  <ng-template #loading>
+    <ion-spinner name="crescent"></ion-spinner>
+  </ng-template>
+</ion-content>

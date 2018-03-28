@@ -1,0 +1,52 @@
+<!--
+  Generated template for the QuestionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{category?.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="(questions | async); let questions; else loading">
+    <ion-card>
+      <ion-card-header>
+        <strong>Question {{currentIndex + 1}}</strong>
+      </ion-card-header>
+      <ion-card-content>
+        <h2>
+          {{questions[0]?.question}}
+        </h2>
+      </ion-card-content>
+    </ion-card>
+    <ion-list no-lines radio-group [(ngModel)]="currentQuestion.selectedption">
+      <ion-item *ngFor="let option of questions[currentIndex]?.options">
+        <ion-label>{{option.text}}</ion-label>
+        <ion-radio [checked]="answers[currentIndex]?.selected === option.id" [value]="option.id" (ionSelect)="setAnswer(currentIndex, questions[currentIndex].answer, option.id)"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-buttons end>
+      <button ion-button color="light" [disabled]="currentIndex === 0" icon-start (click)="currentIndex = (currentIndex - 1)">
+        <ion-icon name="arrow-back"></ion-icon>
+        Back
+      </button>
+      <button ion-button color="light" icon-end *ngIf="questions.length === (currentIndex + 1); else next;" (click)="submitAnswers()">
+        Submit
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <ng-template #next>
+        <button ion-button color="light" icon-end (click)="currentIndex = (currentIndex + 1)">
+          Next
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ng-template>
+    </ion-buttons>
+  </div>
+  <ng-template #loading>Loading&hellip;</ng-template>
+</ion-content>

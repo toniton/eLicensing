@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="signIn(form.value)">
+  <h3 margin-left>Login</h3>
+  <p margin>{{ displayError }}</p>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+      <ion-icon name="ios-chatbubbles-outline" item-end></ion-icon>
+      <ion-icon name="ios-call-outline" item-end></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button block [disabled]="(form && (!form.valid))">Sign In</button>
+  </div>
+</form>
+<div padding>
+  <p text-center>Or</p>
+  <button ion-button block (click)="showSignup()" color="secondary">Sign Up</button>
+</div>

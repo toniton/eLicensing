@@ -1,0 +1,57 @@
+<!--
+  Generated template for the VerificationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Verification</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="form" (ngSubmit)="validateLicense(form.value)">
+    <ion-card>
+      <ion-card-content>
+        <div class="flex">
+          <ion-input type="text" formControlName="license" placeholder="Search your license" clearInput></ion-input>
+          <button ion-button icon-only item-end>
+            <ion-icon name="ios-search-outline"></ion-icon>
+          </button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </form>
+  <ion-card ion-list *ngIf="license; else loading" margin-top>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="https://api.adorable.io/avatars/127/abott@adorable.png">
+      </ion-avatar>
+      <h2>{{ license.firstname }} {{ license.lastname }}</h2>
+      <p>{{ license.id }}</p>
+    </ion-item>
+    <ion-card-content>
+      <p>{{ license.street }}, {{ license.city }}, {{ license.state }}, {{ license.country }}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col padding>
+          <div><strong>Sex: </strong>{{ license.sex | titlecase }}</div>
+      </ion-col>
+      <ion-col padding>
+          <div><strong>F/Marks: </strong>{{ license.facialmarks ? 'Y' : 'N' }}</div>
+      </ion-col>
+      <ion-col padding>
+          <div><strong>1st Issue: </strong>{{ license.firstissue ? 'Y' : 'N' }}</div>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+  <ng-template #loading>
+    <!-- <ion-spinner name="crescent"></ion-spinner> -->
+  </ng-template>
+</ion-content>
